@@ -1,0 +1,47 @@
+#root {
+	width: 100%;
+	min-height: 100vh;
+
+	background-image: var(--img-bg-desktop);
+	background-color: var(--colour-bg);
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: contain;
+}
+
+main {
+	width: inherit;
+	min-height: inherit;
+
+	@include flexbox-center;
+}
+
+header {
+	height: 6.4rem;
+	padding-top: 0.5rem;
+	background-color: transparent;
+
+	@include flexbox-center;
+	justify-content: space-between;
+}
+
+section.wrapper {
+	width: 35%;
+	min-height: 90vh;
+	padding: 5.4rem 0;
+
+	@include flexbox-center;
+	justify-content: flex-start;
+	flex-direction: column;
+	overflow: hidden;
+
+	& > * {
+		width: 100%;
+		border-radius: 4px;
+		margin-bottom: 1.8rem;
+	}
+
+	& > *:not(header):not(p) {
+		background-color: var(--colour-card-bg);
+	}
+}

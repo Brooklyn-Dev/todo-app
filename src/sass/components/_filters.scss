@@ -1,0 +1,19 @@
+.filters {
+	height: 6.4rem;
+	font-size: 1.6rem;
+	font-weight: 700;
+	padding: 0 7.2rem;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	box-shadow: 2px 5px 10px var(--colour-shadow);
+
+	&__btn {
+		&:hover {
+			color: var(--colour-hover);
+		}
+	}
+}

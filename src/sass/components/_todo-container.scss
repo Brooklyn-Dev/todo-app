@@ -1,0 +1,125 @@
+.todo-container {
+	box-shadow: 1px 8px 10px var(--colour-shadow), 2px 5px 7px var(--colour-shadow), 1px 7px 4px var(--colour-shadow);
+
+	&__todos {
+		list-style: none;
+	}
+
+	&__empty-container {
+		width: 100%;
+		height: 100px;
+
+		text-align: center;
+		line-height: 100px;
+		color: var(--colour-text);
+
+		border-bottom: 1px solid var(--colour-checkbox);
+		box-shadow: inset 0 0 5px 2px var(--colour-shadow);
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+	}
+
+	&__todo-item {
+		height: 6.4rem;
+
+		background-color: var(--card-bg);
+
+		padding: 0.9rem 0.9rem 0.9rem 1.8rem;
+
+		@include flexbox-center;
+		justify-content: space-evenly;
+
+		border-bottom: 1px solid var(--colour-checkbox);
+
+		transition: all 500ms ease;
+
+		&:first-of-type {
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+		}
+
+		&:hover .btn {
+			visibility: visible;
+			pointer-events: all;
+		}
+
+		.btn {
+			visibility: hidden;
+			pointer-events: none;
+
+			img {
+				width: 15px;
+			}
+		}
+	}
+
+	&__todo-item-checkbox {
+		width: 25px;
+		height: 25px;
+
+		background-color: var(--colour-checkbox);
+		border: 1px solid var(--colour-checkbox);
+		border-radius: 50%;
+
+		@include flexbox-center;
+
+		position: relative;
+
+		cursor: pointer;
+
+		&:hover {
+			background-image: linear-gradient(#57ddff, #c058f3);
+		}
+
+		input {
+			width: 0;
+			height: 0;
+			opacity: 0;
+			position: absolute;
+			cursor: pointer;
+
+			&:checked + .checkbox-round {
+				background-image: url(../images/icon-check.svg), linear-gradient(#57ddff, #c058f3);
+				background-repeat: no-repeat;
+				background-position: center;
+				width: 25px;
+				height: 25px;
+			}
+		}
+
+		.checkbox-round {
+			width: 22px;
+			height: 22px;
+			background-color: var(--colour-card-bg);
+			border-radius: 50%;
+		}
+	}
+
+	&__todo {
+		font-size: 1.8rem;
+		color: var(--colour-text);
+		padding-left: 1.8rem;
+
+		flex: 1 0 22rem;
+
+		cursor: pointer;
+
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	&__actions {
+		height: 6.4rem;
+		font-size: 1.2rem;
+		padding: 1.8rem;
+
+		@include flexbox-center;
+		justify-content: space-between;
+
+		.left-items {
+			font-size: inherit;
+			color: var(--colour-inactive);
+		}
+	}
+}

@@ -1,0 +1,30 @@
+:root,
+:root[data-theme="light"] {
+	--colour-bg: hsl(236, 33%, 92%);
+	--colour-card-bg: hsl(0, 0%, 98%);
+	--colour-text: hsl(0, 0%, 26%);
+	--colour-inactive: hsl(236, 9%, 61%);
+	--colour-active: hsl(220, 98%, 61%);
+	--colour-hover: hsl(235, 19%, 35%);
+	--colour-checkbox: hsl(233, 11%, 84%);
+	--colour-shadow: hsla(240, 5%, 85%, 0.6);
+	--colour-plus: black;
+	--img-bg-mobile: url("/src/assets/images/bg-mobile-light.jpg");
+	--img-bg-desktop: url("/src/assets/images/bg-desktop-light.jpg");
+}
+
+:root[data-theme="dark"] {
+	--colour-bg: hsl(235, 21%, 11%);
+	--colour-card-bg: hsl(235, 24%, 19%);
+	--colour-text: hsl(0, 0%, 74%);
+	--colour-inactive: hsl(234, 11%, 52%);
+	--colour-active: hsl(220, 98%, 61%);
+	--colour-hover: hsl(236, 33%, 92%);
+	--colour-checkbox: hsl(233, 14%, 35%);
+	--colour-shadow: hsla(0, 0%, 7%, 0.88);
+	--colour-plus: white;
+	--img-bg-mobile: url("/src/assets/images/bg-mobile-dark.jpg");
+	--img-bg-desktop: url("/src/assets/images/bg-desktop-dark.jpg");
+}
+
+$bp: 55em; // 880px
