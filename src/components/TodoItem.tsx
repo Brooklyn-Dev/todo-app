@@ -1,6 +1,6 @@
 import crossIcon from "./assets/images/icon-cross.svg";
 
-type TodoItemProps = { children: string };
+type TodoItemProps = { children: React.ReactNode };
 
 export function TodoItem({ children }: TodoItemProps) {
 	return (

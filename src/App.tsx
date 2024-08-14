@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Header } from "./components/Header";
 import { TodoForm } from "./components/TodoForm";
 import { TodoContainer } from "./components/TodoContainer";
@@ -6,10 +8,20 @@ import { Filters } from "./components/Filters";
 import "./sass/main.scss";
 
 export default function App() {
+	const [isLight, setIsLight] = useState(true);
+
+	function handleToggleTheme() {
+		setIsLight((prevIsLight: boolean) => {
+			const newIsLight = !prevIsLight;
+			document.querySelector("html")?.setAttribute("data-theme", newIsLight ? "light" : "dark");
+			return newIsLight;
+		});
+	}
+
 	return (
 		<main>
 			<section className="wrapper">
-				<Header />
+				<Header isLight={isLight} onToggleTheme={handleToggleTheme} />
 
 				<TodoForm />
 
