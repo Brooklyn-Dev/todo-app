@@ -1,27 +1,30 @@
-import { useState } from "react";
-
 import { Header } from "./components/Header";
 import { TodoForm } from "./components/TodoForm";
 import { TodoContainer } from "./components/TodoContainer";
 import { Filters } from "./components/Filters";
 
+import { useLocalStorageState } from "./hooks/useLocalStorageState";
+
 import "./sass/main.scss";
 
+const htmlEl = document.querySelector("html");
+
 export default function App() {
-	const [isLight, setIsLight] = useState(true);
+	const [theme, setTheme] = useLocalStorageState("light", "theme");
+	htmlEl?.setAttribute("data-theme", theme);
 
 	function handleToggleTheme() {
-		setIsLight((prevIsLight: boolean) => {
-			const newIsLight = !prevIsLight;
-			document.querySelector("html")?.setAttribute("data-theme", newIsLight ? "light" : "dark");
-			return newIsLight;
+		setTheme((theme: string) => {
+			const newTheme = theme === "light" ? "dark" : "light";
+			htmlEl?.setAttribute("data-theme", newTheme);
+			return newTheme;
 		});
 	}
 
 	return (
 		<main>
 			<section className="wrapper">
-				<Header isLight={isLight} onToggleTheme={handleToggleTheme} />
+				<Header theme={theme} onToggleTheme={handleToggleTheme} />
 
 				<TodoForm />
 
