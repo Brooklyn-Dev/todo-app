@@ -1,20 +1,26 @@
-import crossIcon from "./assets/images/icon-cross.svg";
+import crossIcon from "./../assets/images/icon-cross.svg";
 
-type TodoItemProps = { children: React.ReactNode };
+import { Todo } from "./../utils/Types/todo.type";
 
-export function TodoItem({ children }: TodoItemProps) {
+type TodoItemProps = { todo: Todo; onDeleteTodo: (id: string) => void };
+
+export function TodoItem({ todo, onDeleteTodo }: TodoItemProps) {
+	function handleClick() {
+		onDeleteTodo(todo.id);
+	}
+
 	return (
-		<div className="todo-container__todo-item" draggable="true">
+		<li className="todo-container__todo-item" draggable="true">
 			<label className="todo-container__todo-item-checkbox">
 				<input type="checkbox" />
 				<span className="checkbox-round"></span>
 			</label>
 
-			<li className="todo-container__todo">{children}</li>
+			<p className="todo-container__todo">{todo.task}</p>
 
-			<map className="btn">
+			<map className="btn" onClick={handleClick}>
 				<img src={crossIcon} alt="cross svg" />
 			</map>
-		</div>
+		</li>
 	);
 }

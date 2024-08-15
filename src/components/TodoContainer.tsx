@@ -1,9 +1,11 @@
-export function TodoContainer() {
+type TodoContainerProps = {
+	children: React.ReactNode;
+};
+
+export function TodoContainer({ children }: TodoContainerProps) {
 	return (
 		<div className="todo-container">
-			<ul className="todo-container__todos">
-				<div className="todo-container__empty-container">No todo items left!</div>
-			</ul>
+			<ul className="todo-container__todos">{children}</ul>
 
 			<div className="todo-container__actions">
 				<p className="left-items">

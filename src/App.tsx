@@ -1,17 +1,22 @@
 import { Header } from "./components/Header";
 import { TodoForm } from "./components/TodoForm";
 import { TodoContainer } from "./components/TodoContainer";
+import { TodoItem } from "./components/TodoItem";
 import { Filters } from "./components/Filters";
 
 import { useLocalStorageState } from "./hooks/useLocalStorageState";
+
+import { Todo } from "./utils/Types/todo.type";
 
 import "./sass/main.scss";
 
 const htmlEl = document.querySelector("html");
 
 export default function App() {
-	const [theme, setTheme] = useLocalStorageState("light", "theme");
+	const [theme, setTheme] = useLocalStorageState<string>("light", "theme");
 	htmlEl?.setAttribute("data-theme", theme);
+
+	const [todos, setTodos] = useLocalStorageState<Todo[]>([], "todos");
 
 	function handleToggleTheme() {
 		setTheme((theme: string) => {
@@ -21,14 +26,32 @@ export default function App() {
 		});
 	}
 
+	function handleAddTodo(newTodo: Todo) {
+		setTodos((todos: Todo[]) => [...todos, newTodo]);
+	}
+
+	function handleDeleteTodo(id: string) {
+		setTodos((todos: Todo[]) => todos.filter((todo) => todo.id !== id));
+	}
+
 	return (
 		<main>
 			<section className="wrapper">
 				<Header theme={theme} onToggleTheme={handleToggleTheme} />
 
-				<TodoForm />
+				<TodoForm onAddTodo={handleAddTodo} />
 
-				<TodoContainer />
+				<TodoContainer>
+					{todos.length === 0 ? (
+						<li className="todo-container__empty-container">No todo items left!</li>
+					) : (
+						<>
+							{todos.map((todo: Todo) => (
+								<TodoItem key={todo.id} todo={todo} onDeleteTodo={handleDeleteTodo} />
+							))}
+						</>
+					)}
+				</TodoContainer>
 
 				<Filters />
 
