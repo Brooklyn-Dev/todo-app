@@ -35,7 +35,9 @@ export default function App() {
 	}
 
 	function handleCompleteTodo(id: string) {
-		setTodos((todos: Todo[]) => todos.map((todo) => (todo.id !== id ? todo : { ...todo, completed: true })));
+		setTodos((todos: Todo[]) =>
+			todos.map((todo) => (todo.id !== id ? todo : { ...todo, completed: !todo.completed }))
+		);
 	}
 
 	function handleClearCompleted() {
@@ -49,7 +51,7 @@ export default function App() {
 
 				<TodoForm onAddTodo={handleAddTodo} />
 
-				<TodoContainer onClearCompleted={handleClearCompleted}>
+				<TodoContainer todos={todos} onClearCompleted={handleClearCompleted}>
 					{todos.length === 0 ? (
 						<li className="todo-container__empty-container">No todo items left!</li>
 					) : (
