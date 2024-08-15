@@ -1,0 +1,7 @@
+.text-btn {
+	cursor: pointer;
+
+	&:hover {
+		color: var(--colour-hover);
+	}
+}

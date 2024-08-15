@@ -28,7 +28,7 @@ export function TodoItem({ todo, onDeleteTodo, onCompleteTodo }: TodoItemProps) 
 				{todo.task}
 			</p>
 
-			<map className="btn" onClick={handleDelete}>
+			<map className="icon-btn" onClick={handleDelete}>
 				<img src={crossIcon} alt="cross svg" />
 			</map>
 		</li>

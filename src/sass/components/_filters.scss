@@ -10,10 +10,4 @@
 	align-items: center;
 
 	box-shadow: 2px 5px 10px var(--colour-shadow);
-
-	&__btn {
-		&:hover {
-			color: var(--colour-hover);
-		}
-	}
 }

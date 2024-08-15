@@ -1,15 +1,26 @@
-export function Filters() {
+const filters = ["All", "Active", "Completed"];
+
+type FiltersProps = {
+	activeFilter: string;
+	onSetActiveFilter: (filter: string) => void;
+};
+
+export function Filters({ activeFilter, onSetActiveFilter }: FiltersProps) {
+	function handleSelection(filter: string) {
+		onSetActiveFilter(filter);
+	}
+
 	return (
 		<div className="filters">
-			<a href="#" className="filters__btn all active">
-				All
-			</a>
-			<a href="#" className="filters__btn live">
-				Active
-			</a>
-			<a href="#" className="filters__btn btn--completed">
-				Completed
-			</a>
+			{filters.map((filter) => (
+				<a
+					key={filter}
+					className={`text-btn ${filter === activeFilter ? "active" : ""}`}
+					onClick={() => handleSelection(filter)}
+				>
+					{filter}
+				</a>
+			))}
 		</div>
 	);
 }

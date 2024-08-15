@@ -17,6 +17,14 @@ export default function App() {
 	htmlEl?.setAttribute("data-theme", theme);
 
 	const [todos, setTodos] = useLocalStorageState<Todo[]>([], "todos");
+	let todosShown: Todo[] = todos;
+
+	const [activeFilter, setActiveFilter] = useLocalStorageState<string>("All", "filter");
+	if (activeFilter === "Active") {
+		todosShown = todos.filter((todo) => todo.completed !== true);
+	} else if (activeFilter === "Completed") {
+		todosShown = todos.filter((todo) => todo.completed === true);
+	}
 
 	function handleToggleTheme() {
 		setTheme((theme: string) => {
@@ -44,6 +52,10 @@ export default function App() {
 		setTodos((todos: Todo[]) => todos.filter((todo) => todo.completed !== true));
 	}
 
+	function handleSetActiveFilter(filter: string) {
+		setActiveFilter(filter);
+	}
+
 	return (
 		<main>
 			<section className="wrapper">
@@ -52,11 +64,13 @@ export default function App() {
 				<TodoForm onAddTodo={handleAddTodo} />
 
 				<TodoContainer todos={todos} onClearCompleted={handleClearCompleted}>
-					{todos.length === 0 ? (
-						<li className="todo-container__empty-container">No todo items left!</li>
+					{todosShown.length === 0 ? (
+						<li className="todo-container__empty-container">
+							No {`${activeFilter !== "All" ? activeFilter.toLowerCase() : ""}`} todo items left!
+						</li>
 					) : (
 						<>
-							{todos.map((todo: Todo) => (
+							{todosShown.map((todo: Todo) => (
 								<TodoItem
 									key={todo.id}
 									todo={todo}
@@ -68,7 +82,7 @@ export default function App() {
 					)}
 				</TodoContainer>
 
-				<Filters />
+				<Filters activeFilter={activeFilter} onSetActiveFilter={handleSetActiveFilter} />
 
 				<p className="drag-help-info">Drag and drop to reorder list</p>
 			</section>

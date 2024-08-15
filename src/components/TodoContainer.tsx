@@ -26,7 +26,7 @@ export function TodoContainer({ children, todos, onClearCompleted }: TodoContain
 				<p className="left-items">
 					<span id="count">{todosLeft}</span> items left
 				</p>
-				<a className="btn--clear-completed" onClick={handleClear}>
+				<a className="text-btn" onClick={handleClear}>
 					Clear Completed
 				</a>
 			</div>

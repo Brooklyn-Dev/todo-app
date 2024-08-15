@@ -14,7 +14,7 @@ export function Header({ theme, onToggleTheme }: HeaderProps) {
 	return (
 		<header>
 			<h1 className="heading-primary">todo</h1>
-			<button className="btn btn--theme" onClick={handleClick}>
+			<button className="icon-btn" onClick={handleClick}>
 				<img src={theme === "light" ? moonIcon : sunIcon} alt="moon svg" />
 			</button>
 		</header>
