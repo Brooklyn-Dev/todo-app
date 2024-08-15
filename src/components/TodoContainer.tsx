@@ -1,8 +1,13 @@
 type TodoContainerProps = {
 	children: React.ReactNode;
+	onClearCompleted: () => void;
 };
 
-export function TodoContainer({ children }: TodoContainerProps) {
+export function TodoContainer({ children, onClearCompleted }: TodoContainerProps) {
+	function handleClear() {
+		onClearCompleted();
+	}
+
 	return (
 		<div className="todo-container">
 			<ul className="todo-container__todos">{children}</ul>
@@ -11,7 +16,7 @@ export function TodoContainer({ children }: TodoContainerProps) {
 				<p className="left-items">
 					<span id="count">0</span> items left
 				</p>
-				<a href="#" className="btn--clear-completed">
+				<a className="btn--clear-completed" onClick={handleClear}>
 					Clear Completed
 				</a>
 			</div>

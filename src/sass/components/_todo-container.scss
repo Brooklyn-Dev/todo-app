@@ -79,7 +79,7 @@
 			cursor: pointer;
 
 			&:checked + .checkbox-round {
-				background-image: url(../images/icon-check.svg), linear-gradient(#57ddff, #c058f3);
+				background-image: url("src/assets/images/icon-check.svg"), linear-gradient(#57ddff, #c058f3);
 				background-repeat: no-repeat;
 				background-position: center;
 				width: 25px;

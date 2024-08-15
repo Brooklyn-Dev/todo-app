@@ -34,6 +34,14 @@ export default function App() {
 		setTodos((todos: Todo[]) => todos.filter((todo) => todo.id !== id));
 	}
 
+	function handleCompleteTodo(id: string) {
+		setTodos((todos: Todo[]) => todos.map((todo) => (todo.id !== id ? todo : { ...todo, completed: true })));
+	}
+
+	function handleClearCompleted() {
+		setTodos((todos: Todo[]) => todos.filter((todo) => todo.completed !== true));
+	}
+
 	return (
 		<main>
 			<section className="wrapper">
@@ -41,13 +49,18 @@ export default function App() {
 
 				<TodoForm onAddTodo={handleAddTodo} />
 
-				<TodoContainer>
+				<TodoContainer onClearCompleted={handleClearCompleted}>
 					{todos.length === 0 ? (
 						<li className="todo-container__empty-container">No todo items left!</li>
 					) : (
 						<>
 							{todos.map((todo: Todo) => (
-								<TodoItem key={todo.id} todo={todo} onDeleteTodo={handleDeleteTodo} />
+								<TodoItem
+									key={todo.id}
+									todo={todo}
+									onDeleteTodo={handleDeleteTodo}
+									onCompleteTodo={handleCompleteTodo}
+								/>
 							))}
 						</>
 					)}
