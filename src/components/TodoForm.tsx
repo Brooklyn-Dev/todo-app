@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+
+import { useKey } from "./../hooks/useKey";
 
 import { Todo } from "./../utils/Types/todo.type";
 
@@ -10,6 +12,8 @@ type TodoFormProps = {
 
 export function TodoForm({ onAddTodo }: TodoFormProps) {
 	const [todo, setTodo] = useState("");
+
+	const inputEl = useRef<HTMLInputElement>(null);
 
 	function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -26,6 +30,13 @@ export function TodoForm({ onAddTodo }: TodoFormProps) {
 		setTodo("");
 	}
 
+	useKey("Enter", () => {
+		if (document.activeElement === inputEl.current) return;
+		if (!inputEl.current) return;
+		inputEl.current.focus();
+		setTodo("");
+	});
+
 	return (
 		<form className="todo-form" onSubmit={(e) => handleSubmit(e)}>
 			<span className="todo-form__round"></span>
@@ -35,6 +46,7 @@ export function TodoForm({ onAddTodo }: TodoFormProps) {
 				placeholder="Create a new todo..."
 				value={todo}
 				onChange={(e) => setTodo(e.target.value)}
+				ref={inputEl}
 			/>
 			<button className="todo-form__add-todo">+</button>
 		</form>
