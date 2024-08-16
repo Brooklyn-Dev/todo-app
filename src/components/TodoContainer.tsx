@@ -8,14 +8,14 @@ type TodoContainerProps = {
 };
 
 export function TodoContainer({ children, todos, onClearCompleted }: TodoContainerProps) {
-	const [todosLeft, setTodosLeft] = useState(todos.filter((todo) => todo.completed !== true).length);
+	const [todosLeft, setTodosLeft] = useState(todos.filter((todo) => !todo.completed).length);
 
 	function handleClear() {
 		onClearCompleted();
 	}
 
 	useEffect(() => {
-		setTodosLeft(todos.filter((todo) => todo.completed !== true).length);
+		setTodosLeft(todos.filter((todo) => !todo.completed).length);
 	}, [todos]);
 
 	return (

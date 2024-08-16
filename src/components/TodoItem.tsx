@@ -1,11 +1,19 @@
 import { useState } from "react";
-import crossIcon from "./../assets/images/icon-cross.svg";
 
 import { Todo } from "./../utils/Types/todo.type";
 
-type TodoItemProps = { todo: Todo; onDeleteTodo: (id: string) => void; onCompleteTodo: (id: string) => void };
+import crossIcon from "./../assets/images/icon-cross.svg";
 
-export function TodoItem({ todo, onDeleteTodo, onCompleteTodo }: TodoItemProps) {
+type TodoItemProps = {
+	todo: Todo;
+	onDeleteTodo: (id: string) => void;
+	onCompleteTodo: (id: string) => void;
+	onDragStart: () => void;
+	onDragEnter: () => void;
+	onDragEnd: () => void;
+};
+
+export function TodoItem({ todo, onDeleteTodo, onCompleteTodo, onDragStart, onDragEnter, onDragEnd }: TodoItemProps) {
 	const [isChecked, setIsChecked] = useState(todo.completed);
 
 	function handleDelete() {
@@ -18,7 +26,14 @@ export function TodoItem({ todo, onDeleteTodo, onCompleteTodo }: TodoItemProps) 
 	}
 
 	return (
-		<li className={`todo-container__todo-item ${isChecked ? "strike" : ""}`} draggable="true">
+		<li
+			className={`todo-container__todo-item ${isChecked ? "strike" : ""}`}
+			draggable
+			onDragStart={onDragStart}
+			onDragEnter={onDragEnter}
+			onDragEnd={onDragEnd}
+			onDragOver={(e: React.DragEvent<HTMLLIElement>) => e.preventDefault()}
+		>
 			<label className="todo-container__todo-item-checkbox">
 				<input type="checkbox" checked={isChecked} onChange={handleComplete} />
 				<span className="checkbox-round"></span>

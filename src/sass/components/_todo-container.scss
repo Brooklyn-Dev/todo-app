@@ -38,9 +38,11 @@
 			border-top-right-radius: 4px;
 		}
 
-		&:hover .icon-btn {
-			visibility: visible;
-			pointer-events: all;
+		&:hover {
+			.icon-btn {
+				visibility: visible;
+				pointer-events: all;
+			}
 		}
 
 		.icon-btn {
