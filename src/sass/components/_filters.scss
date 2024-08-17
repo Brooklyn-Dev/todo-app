@@ -1,13 +1,23 @@
 .filters {
-	height: 6.4rem;
-	font-size: 1.6rem;
+	height: 5.2rem;
+	font-size: 1.4rem;
 	font-weight: 700;
-	padding: 0 7.2rem;
 
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	gap: 1.6rem;
 
-	box-shadow: 2px 5px 10px var(--colour-shadow);
+	@media only screen and (max-width: $breakpoint-small) {
+		height: 5.6rem;
+		font-size: 1.5rem;
+		padding: 0 5.6rem;
+		box-shadow: 2px 5px 10px var(--colour-shadow);
+	}
+
+	@media only screen and (max-width: $breakpoint-smallest) {
+		height: 5.2rem;
+		padding: 0 4.4rem;
+	}
 }

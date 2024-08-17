@@ -27,7 +27,7 @@ export function TodoItem({ todo, onDeleteTodo, onCompleteTodo, onDragStart, onDr
 
 	return (
 		<li
-			className={`todo-container__todo-item ${isChecked ? "strike" : ""}`}
+			className="todo-container__todo-item"
 			draggable
 			onDragStart={onDragStart}
 			onDragEnter={onDragEnter}
@@ -39,7 +39,7 @@ export function TodoItem({ todo, onDeleteTodo, onCompleteTodo, onDragStart, onDr
 				<span className="checkbox-round"></span>
 			</label>
 
-			<p className="todo-container__todo" onClick={handleComplete}>
+			<p className={`todo-container__todo ${isChecked ? "strike" : ""}`} onClick={handleComplete}>
 				{todo.task}
 			</p>
 

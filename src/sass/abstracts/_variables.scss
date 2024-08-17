@@ -11,6 +11,7 @@
 	--colour-plus: black;
 	--img-bg-mobile: url("/src/assets/images/bg-mobile-light.jpg");
 	--img-bg-desktop: url("/src/assets/images/bg-desktop-light.jpg");
+	--breakpoint-small: 39.0625em; // 625px
 }
 
 :root[data-theme="dark"] {
@@ -27,4 +28,8 @@
 	--img-bg-desktop: url("/src/assets/images/bg-desktop-dark.jpg");
 }
 
-$bp: 55em; // 880px
+$breakpoint-largest: 87.5em; // 1400px
+$breakpoint-large: 70em; // 1120px
+$breakpoint-medium: 50em; // 800px
+$breakpoint-small: 39.0625em; // 625px
+$breakpoint-smallest: 23.4375em; // 375px

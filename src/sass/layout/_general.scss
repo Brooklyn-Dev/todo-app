@@ -7,6 +7,29 @@
 	background-repeat: no-repeat;
 	background-position: top left;
 	background-size: contain;
+
+	@media only screen and (max-width: $breakpoint-largest) {
+		@include flexbox-center;
+		background-position: top center;
+		background-size: 125%;
+	}
+
+	@media only screen and (max-width: $breakpoint-large) {
+		background-size: 162.5%;
+	}
+
+	@media only screen and (max-width: $breakpoint-medium) {
+		background-size: 225%;
+	}
+
+	@media only screen and (max-width: $breakpoint-small) {
+		background-size: 275%;
+	}
+
+	@media only screen and (max-width: $breakpoint-smallest) {
+		background-image: var(--img-bg-mobile);
+		background-size: 100%;
+	}
 }
 
 main {
@@ -17,18 +40,22 @@ main {
 }
 
 header {
-	height: 6.4rem;
-	padding-top: 0.5rem;
+	height: 4rem;
 	background-color: transparent;
 
 	@include flexbox-center;
 	justify-content: space-between;
+	align-items: flex-start;
+
+	@media only screen and (max-width: $breakpoint-smallest) {
+		margin-bottom: 2.4rem !important;
+	}
 }
 
 section.wrapper {
-	width: 35%;
+	width: 54rem;
 	min-height: 90vh;
-	padding: 5.4rem 0;
+	margin: 8rem 0;
 
 	@include flexbox-center;
 	justify-content: flex-start;
@@ -37,11 +64,23 @@ section.wrapper {
 
 	& > * {
 		width: 100%;
-		border-radius: 4px;
-		margin-bottom: 1.8rem;
+		border-radius: 6px;
+		margin-bottom: 3.2rem;
 	}
 
 	& > *:not(header):not(p) {
 		background-color: var(--colour-card-bg);
+	}
+
+	@media only screen and (max-width: $breakpoint-medium) {
+		width: 87.5%;
+	}
+
+	@media only screen and (max-width: $breakpoint-smallest) {
+		margin: 4.4rem 0;
+
+		& > *:not(header):not(p) {
+			margin-bottom: 1.4rem;
+		}
 	}
 }

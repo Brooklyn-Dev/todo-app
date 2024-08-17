@@ -48,7 +48,6 @@ export function TodoForm({ onAddTodo }: TodoFormProps) {
 				onChange={(e) => setTodo(e.target.value)}
 				ref={inputEl}
 			/>
-			<button className="todo-form__add-todo">+</button>
 		</form>
 	);
 }

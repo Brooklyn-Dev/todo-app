@@ -5,9 +5,10 @@ type TodoContainerProps = {
 	children: React.ReactNode;
 	todos: Todo[];
 	onClearCompleted: () => void;
+	filters?: React.ReactNode;
 };
 
-export function TodoContainer({ children, todos, onClearCompleted }: TodoContainerProps) {
+export function TodoContainer({ children, todos, onClearCompleted, filters }: TodoContainerProps) {
 	const [todosLeft, setTodosLeft] = useState(todos.filter((todo) => !todo.completed).length);
 
 	function handleClear() {
@@ -26,6 +27,7 @@ export function TodoContainer({ children, todos, onClearCompleted }: TodoContain
 				<p className="left-items">
 					<span id="count">{todosLeft}</span> items left
 				</p>
+				{filters}
 				<a className="text-btn" onClick={handleClear}>
 					Clear Completed
 				</a>

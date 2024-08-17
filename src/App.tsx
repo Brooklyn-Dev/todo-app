@@ -10,6 +10,7 @@ import { Todo } from "./utils/Types/todo.type";
 
 import "./sass/main.scss";
 import { useRef } from "react";
+import { useMediaQuery } from "./hooks/useMediaQuery";
 
 const htmlEl = document.querySelector("html");
 
@@ -29,6 +30,8 @@ export default function App() {
 	} else if (activeFilter === "Completed") {
 		todosShown = todos.filter((todo) => todo.completed);
 	}
+
+	const isSmallScreen = useMediaQuery("--breakpoint-small");
 
 	function handleToggleTheme() {
 		setTheme((theme) => {
@@ -76,7 +79,15 @@ export default function App() {
 
 				<TodoForm onAddTodo={handleAddTodo} />
 
-				<TodoContainer todos={todos} onClearCompleted={handleClearCompleted}>
+				<TodoContainer
+					todos={todos}
+					onClearCompleted={handleClearCompleted}
+					filters={
+						!isSmallScreen ? (
+							<Filters activeFilter={activeFilter} onSetActiveFilter={handleSetActiveFilter} />
+						) : null
+					}
+				>
 					{todosShown.length === 0 ? (
 						<li className="todo-container__empty-container">
 							No {`${activeFilter !== "All" ? activeFilter.toLowerCase() : ""}`} todo items left!
@@ -96,7 +107,7 @@ export default function App() {
 					)}
 				</TodoContainer>
 
-				<Filters activeFilter={activeFilter} onSetActiveFilter={handleSetActiveFilter} />
+				{isSmallScreen && <Filters activeFilter={activeFilter} onSetActiveFilter={handleSetActiveFilter} />}
 
 				<p className="drag-help-info">Drag and drop to reorder list</p>
 			</section>
