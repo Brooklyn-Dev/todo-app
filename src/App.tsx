@@ -12,6 +12,9 @@ import "./sass/main.scss";
 import { useRef } from "react";
 import { useMediaQuery } from "./hooks/useMediaQuery";
 
+import githubLightIcon from "./assets/images/icon-github-light.svg";
+import githubDarkIcon from "./assets/images/icon-github-dark.svg";
+
 const htmlEl = document.querySelector("html");
 
 export default function App() {
@@ -73,44 +76,51 @@ export default function App() {
 	}
 
 	return (
-		<main>
-			<section className="wrapper">
-				<Header theme={theme} onToggleTheme={handleToggleTheme} />
+		<>
+			<main>
+				<section className="wrapper">
+					<Header theme={theme} onToggleTheme={handleToggleTheme} />
 
-				<TodoForm onAddTodo={handleAddTodo} />
+					<TodoForm onAddTodo={handleAddTodo} />
 
-				<TodoContainer
-					todos={todos}
-					onClearCompleted={handleClearCompleted}
-					filters={
-						!isSmallScreen ? (
-							<Filters activeFilter={activeFilter} onSetActiveFilter={handleSetActiveFilter} />
-						) : null
-					}
-				>
-					{todosShown.length === 0 ? (
-						<li className="todo-container__empty-container">
-							No {`${activeFilter !== "All" ? activeFilter.toLowerCase() : ""}`} todo items left!
-						</li>
-					) : (
-						todosShown.map((todo, index) => (
-							<TodoItem
-								key={todo.id}
-								todo={todo}
-								onDeleteTodo={handleDeleteTodo}
-								onCompleteTodo={handleCompleteTodo}
-								onDragStart={() => (dragIndex.current = index)}
-								onDragEnter={() => (draggedOverIndex.current = index)}
-								onDragEnd={handleReorderTodos}
-							/>
-						))
-					)}
-				</TodoContainer>
+					<TodoContainer
+						todos={todos}
+						onClearCompleted={handleClearCompleted}
+						filters={
+							!isSmallScreen ? (
+								<Filters activeFilter={activeFilter} onSetActiveFilter={handleSetActiveFilter} />
+							) : null
+						}
+					>
+						{todosShown.length === 0 ? (
+							<li className="todo-container__empty-container">
+								No {`${activeFilter !== "All" ? activeFilter.toLowerCase() : ""}`} todo items left!
+							</li>
+						) : (
+							todosShown.map((todo, index) => (
+								<TodoItem
+									key={todo.id}
+									todo={todo}
+									onDeleteTodo={handleDeleteTodo}
+									onCompleteTodo={handleCompleteTodo}
+									onDragStart={() => (dragIndex.current = index)}
+									onDragEnter={() => (draggedOverIndex.current = index)}
+									onDragEnd={handleReorderTodos}
+								/>
+							))
+						)}
+					</TodoContainer>
 
-				{isSmallScreen && <Filters activeFilter={activeFilter} onSetActiveFilter={handleSetActiveFilter} />}
+					{isSmallScreen && <Filters activeFilter={activeFilter} onSetActiveFilter={handleSetActiveFilter} />}
 
-				<p className="drag-help-info">Drag and drop to reorder list</p>
-			</section>
-		</main>
+					<p className="drag-help-info">Drag and drop to reorder list</p>
+				</section>
+			</main>
+			<aside className="social-icons">
+				<a className="social-icons__icon" href="https://github.com/Brooklyn-Dev/todo-app" target="_blank">
+					<img src={theme === "light" ? githubDarkIcon : githubLightIcon} alt="GitHub Logo"></img>
+				</a>
+			</aside>
+		</>
 	);
 }

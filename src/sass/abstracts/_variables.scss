@@ -10,7 +10,7 @@
 	--colour-shadow: hsla(240, 5%, 85%, 0.6);
 	--colour-plus: black;
 	--img-bg-mobile: url("/src/assets/images/bg-mobile-light.jpg");
-	--img-bg-desktop: url("/src/assets/images/bg-desktop-light.jpg");
+	--img-bg-desktop: url("/src/assets/images/bg-desktop-light.webp");
 	--breakpoint-small: 39.0625em; // 625px
 }
 
@@ -25,7 +25,7 @@
 	--colour-shadow: hsla(0, 0%, 7%, 0.88);
 	--colour-plus: white;
 	--img-bg-mobile: url("/src/assets/images/bg-mobile-dark.jpg");
-	--img-bg-desktop: url("/src/assets/images/bg-desktop-dark.jpg");
+	--img-bg-desktop: url("/src/assets/images/bg-desktop-dark.webp");
 }
 
 $breakpoint-largest: 87.5em; // 1400px
